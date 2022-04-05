@@ -68,7 +68,7 @@ bool fixCat( const size_t index ) {
 }
 
 
-bool updateCatWeight( const size_t index, const float weight ) {
+bool updateCatWeight( const size_t index, const Weight weight ) {
     CHECK_INDEX( index )
 
     if( isWeightValid( weight ) == false ) {

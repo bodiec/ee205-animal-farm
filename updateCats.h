@@ -21,7 +21,7 @@
 /// All of these functions return true if they succeed
 extern bool updateCatName    ( const size_t index, const char*              name    ) ;
 extern bool fixCat           ( const size_t index                                   ) ;
-extern bool updateCatWeight  ( const size_t index, const float              weight  ) ;
+extern bool updateCatWeight  ( const size_t index, const Weight              weight  ) ;
 extern bool updateCatCollar1 ( const size_t index, const enum Color         color   ) ;
 extern bool updateCatCollar2 ( const size_t index, const enum Color         color   ) ;
 extern bool updateLicense    ( const size_t index, const unsigned long long license ) ;

@@ -23,13 +23,14 @@
 enum Gender { UNKNOWN_GENDER=0, MALE, FEMALE } ;
 enum Breed  { UNKNOWN_BREED=0, MAINE_COON, MANX, SHORTHAIR, PERSIAN, SPHYNX } ;
 enum Color  { BLACK=0, WHITE, RED, BLUE, GREEN, PINK } ;
+typedef float Weight;
 
 struct Cat {
     char               name[MAX_CAT_NAME] ;
     enum Gender        gender ;
     enum Breed         breed ;
     bool               isFixed ;
-    float              weight ;
+    Weight             weight;
     enum Color         collarColor1 ;
     enum Color         collarColor2 ;
     unsigned long long license ;
@@ -59,7 +60,7 @@ extern bool isIndexValid( const size_t index ) ;
 extern bool isNameValid( const char* name ) ;
 
 /// Verify the weight is valid
-extern bool isWeightValid( const float weight ) ;
+extern bool isWeightValid( const Weight weight ) ;
 
 /// Verify the cat collars are valid
 extern bool areCatCollarsValid(enum Color collarColor1, enum Color collarColor2 ) ;
