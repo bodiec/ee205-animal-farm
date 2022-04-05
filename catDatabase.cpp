@@ -24,7 +24,7 @@
 /// The array that holds all of our cats
 struct Cat cats[MAX_CATS];
 
-size_t numCats = 0 ;  ///< This is top of the cat array
+NumCats numCats = 0 ;  ///< This is top of the cat array
 
 
 /// Zeros out a cat's information from the database

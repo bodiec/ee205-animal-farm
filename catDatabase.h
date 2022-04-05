@@ -24,6 +24,7 @@ enum Gender { UNKNOWN_GENDER=0, MALE, FEMALE } ;
 enum Breed  { UNKNOWN_BREED=0, MAINE_COON, MANX, SHORTHAIR, PERSIAN, SPHYNX } ;
 enum Color  { BLACK=0, WHITE, RED, BLUE, GREEN, PINK } ;
 typedef float Weight;
+typedef size_t NumCats;
 
 struct Cat {
     char               name[MAX_CAT_NAME] ;
@@ -40,7 +41,7 @@ struct Cat {
 /// The array that holds all of our cats
 extern struct Cat cats[MAX_CATS] ;
 
-extern size_t numCats ;  /// This points to the next available cat we can add
+extern NumCats numCats ;  /// This points to the next available cat we can add
 /// to the database.
 
 
