@@ -12,7 +12,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #pragma once
-
+#include "config.h"
 #include "catDatabase.h"
 
 extern unsigned int addCat( const char*              name

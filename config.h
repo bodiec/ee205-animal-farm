@@ -13,7 +13,7 @@
 
 #pragma once
 
-#include <limits.h>
+//#include <limits.h>
 
 #define PROGRAM_TITLE "Animal Farm 1"
 #define PROGRAM_NAME  "animalfarm1"
@@ -22,3 +22,10 @@
 /// can hold
 
 #define BAD_CAT UINT_MAX
+////New class Weight = float
+typedef float Weight;
+
+////enum for Gender
+enum Gender {UNKNOWN_GENDER=0, MALE, FEMALE};
+////enum for Breed
+enum Breed {UNKNOWN_BREED=0,MAINE_COON, MANX, SHORTHAIR, PERSIAN, SPHYNX};

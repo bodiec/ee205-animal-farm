@@ -13,6 +13,11 @@
 
 #pragma once
 
+#include <cstring>
+#include <stdexcept>
+#include <iostream>
+#include <iomanip>
+#include <cassert>
 #include <stdbool.h>  // For the bool datatype
 #include <stddef.h>   // For the size_t datatype
 
@@ -23,7 +28,6 @@
 enum Gender { UNKNOWN_GENDER=0, MALE, FEMALE } ;
 enum Breed  { UNKNOWN_BREED=0, MAINE_COON, MANX, SHORTHAIR, PERSIAN, SPHYNX } ;
 enum Color  { BLACK=0, WHITE, RED, BLUE, GREEN, PINK } ;
-typedef float Weight;
 typedef size_t NumCats;
 
 struct Cat {
@@ -35,7 +39,10 @@ struct Cat {
     enum Color         collarColor1 ;
     enum Color         collarColor2 ;
     unsigned long long license ;
+    struct Cat* nextCat;
 } ;
+
+struct Cat* catListHeadPointer = NULL;
 
 
 /// The array that holds all of our cats
