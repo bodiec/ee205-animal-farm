@@ -10,15 +10,15 @@
 /// @author Bodie Collins <bodie@hawaii.edu>
 /// @date   07_Apr_2022
 ///////////////////////////////////////////////////////////////////////////////
+#pragma once
 #include "config.h"
-#include "linkedList.h"
-#define MAX_NAME (50)
+#define MAX_CAT_NAME (50)
 #define UNKNOWN_WEIGHT (-1)
 
 class Cat {
     ////member variables
     protected:
-        char        name[MAX_NAME];
+        char        name[MAX_CAT_NAME];
         enum Gender gender;
         enum Breed  breed;
         bool        isCatFixed;
@@ -73,7 +73,7 @@ class Cat {
         static bool validateName(const char* newName);
         static bool validateGender(const Gender newGender);
         static bool validateBreed(const Breed newBreed);
-        static bool validateweight(const Weight newWeight);
+        static bool validateWeight(const Weight newWeight);
 
     ////protected methods
     protected:

@@ -25,24 +25,23 @@
 
 #define MAX_CAT_NAME (50)   /// This defines the size of the cat's name string
 
-enum Gender { UNKNOWN_GENDER=0, MALE, FEMALE } ;
-enum Breed  { UNKNOWN_BREED=0, MAINE_COON, MANX, SHORTHAIR, PERSIAN, SPHYNX } ;
+
 enum Color  { BLACK=0, WHITE, RED, BLUE, GREEN, PINK } ;
 typedef size_t NumCats;
 
-struct Cat {
-    char               name[MAX_CAT_NAME] ;
-    enum Gender        gender ;
-    enum Breed         breed ;
-    bool               isFixed ;
-    Weight             weight;
-    enum Color         collarColor1 ;
-    enum Color         collarColor2 ;
-    unsigned long long license ;
-    struct Cat* nextCat;
-} ;
+//struct Cat {
+//    char               name[MAX_CAT_NAME] ;
+ //   enum Gender        gender ;
+ //   enum Breed         breed ;
+//    bool               isFixed ;
+ //   Weight             weight;
+//    enum Color         collarColor1 ;
+//    enum Color         collarColor2 ;
+//    unsigned long long license ;
+//    struct Cat* nextCat;
+//} ;
 
-struct Cat* catListHeadPointer = NULL;
+//struct Cat* catListHeadPointer = NULL;
 
 
 /// The array that holds all of our cats
