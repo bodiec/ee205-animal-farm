@@ -27,7 +27,7 @@ bool addCat(Cat* newCat){
 
     ///if cats is already in database
     if(isCatInDatabase(newCat)){
-        throw logic_error PROGRAM_NAME": Cat is already in Database"
+        throw logic_error ( PROGRAM_NAME": Cat is already in Database");
         }
 
     assert( validateDatabase() );

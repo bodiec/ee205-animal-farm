@@ -16,6 +16,6 @@
 #include "linkedList.h"
 
 ///Insert a cat @ the start of the database
-extern bool addCat(Cat* newCat)''
+extern bool addCat(Cat* newCat);
 
 

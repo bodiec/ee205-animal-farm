@@ -16,115 +16,47 @@
 /// @author Bodie Collins <bodie@hawaii.edu>s
 /// @date   10_May_2022
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-#include <stdio.h>
-#include <stdlib.h>  // For EXIT_SUCCESS / EXIT_FAILURE
-#include <assert.h>  // For assert()
+using namespace std;
 
 #include "config.h"
 #include "catDatabase.h"
 #include "addCats.h"
 #include "reportCats.h"
-#include "updateCats.h"
 #include "deleteCats.h"
+#include "linkedList.h"
 
+#include <iostream>
+#include <exception>
+#include <cassert>
+#include <cstring>
+#include <cstdlib>
+
+/// Used to test the largest possible name
 #define MAX_NAME1    "1234567890123456789012345678901234567890123456789"
-#define MAX_NAME2    "DIFFERENT 123456789012345678901234567890123456789"
+
+/// Used to test an illegal name (because it's too large by one char
 #define ILLEGAL_NAME "12345678901234567890123456789012345678901234567890"
 
 
 int main() {
-    printf( "Starting %s\n", PROGRAM_TITLE ) ;
+    cout << "Starting Animal Farm 2" << endl ;
 
     initializeDatabase() ;
 
-    assert( addCat( "Loki",  MALE,           PERSIAN,    true,   8.5, BLACK, WHITE, 101 ) != BAD_CAT ) ;
-    assert( addCat( "Milo",  MALE,           MANX,       true,   7.0, BLACK, RED,   102 ) != BAD_CAT ) ;
-    assert( addCat( "Bella", FEMALE,         MAINE_COON, true,  18.2, BLACK, BLUE,  103 ) != BAD_CAT ) ;
-    assert( addCat( "Kali",  FEMALE,         SHORTHAIR,  false,  9.2, BLACK, GREEN, 104 ) != BAD_CAT ) ;
-    assert( addCat( "Trin",  FEMALE,         MANX,       true,  12.2, BLACK, PINK,  105 ) != BAD_CAT ) ;
-    assert( addCat( "Chili", UNKNOWN_GENDER, SHORTHAIR,  false, 19.0, WHITE, BLACK, 106 ) != BAD_CAT ) ;
-
-#ifdef DEBUG
-    // Test for NULL name
-                assert( addCat( NULL, UNKNOWN_GENDER, SHORTHAIR,  false, 19.0, BLACK, WHITE, 101 ) == BAD_CAT ) ;
-                // Test for empty name
-                assert( addCat( "", UNKNOWN_GENDER, SHORTHAIR,  false, 19.0, BLACK, WHITE, 101 ) == BAD_CAT ) ;
-                // Test for max name
-                assert( addCat( MAX_NAME1, UNKNOWN_GENDER, SHORTHAIR,  false, 19.0, WHITE, RED, 107 ) != BAD_CAT ) ;
-                // Test for name too long
-                assert( addCat( ILLEGAL_NAME, UNKNOWN_GENDER, SHORTHAIR,  false, 19.0, WHITE, BLUE, 108 ) == BAD_CAT ) ;
-                // Test for duplicate cat name
-                assert( addCat( "Chili", UNKNOWN_GENDER, SHORTHAIR,  false, 0, WHITE, GREEN, 109 ) == BAD_CAT ) ;
-                // Test for weight <= 0
-                assert( addCat( "Neo", UNKNOWN_GENDER, SHORTHAIR,  false, 0, WHITE, PINK, 110 ) == BAD_CAT ) ;
-                // Test same collar colors
-      assert( addCat( "Neo", UNKNOWN_GENDER, SHORTHAIR,  false, 3, WHITE, WHITE, 111 ) == BAD_CAT ) ;
-
-                // Test for printCat( -1 ) ;
-                assert( !printCat( -1 ) ) ;
-                // Test for out of bounds
-                assert( !printCat( MAX_CATS )) ;
-
-                // Test finding a cat...
-                assert( findCatByName( "Bella" ) == 2 ) ;
-                // Test not finding a cat
-                assert( findCatByName( "Bella's not here" ) == BAD_CAT ) ;
-
-                // Test addCat details
-                size_t testCat = addCat( "Oscar", UNKNOWN_GENDER, SHORTHAIR,  false, 1.1, RED, BLACK, 111 ) ;
-                assert( testCat != BAD_CAT );
-                assert( testCat < MAX_CATS );
-
-                // Test setting a large name
-                assert( updateCatName( testCat, MAX_NAME2 ) == true ) ;
-                assert( printCat( testCat )) ;
-
-                // Test setting an out-of-bounds name
-                assert( updateCatName( testCat, ILLEGAL_NAME ) == false ) ;
-                assert( printCat( testCat )) ;
-
-                // Test setting an illegal cat weight
-                assert( updateCatWeight( testCat, -1 ) == false ) ;
-
-                // Test setting an illegal cat collar (both colors are the same)
-      assert( updateCatCollar1( testCat, BLACK ) == false ) ;
-      assert( updateCatCollar2( testCat, RED ) == false ) ;
-
-      // Test setting an illegal cat collar (duplicates the collar of another cat)
-      assert( addCat( "Oscar II", UNKNOWN_GENDER, SHORTHAIR,  false, 1.1, RED, BLACK, 112 ) == BAD_CAT ) ;
-      assert( updateCatCollar1( testCat, WHITE ) == false ) ;
-      assert( updateCatCollar1( testCat, GREEN ) == true ) ;  // This should succeed
-      assert( updateCatCollar2( testCat, WHITE ) == true ) ;  // This should succeed
-      assert( updateCatCollar2( testCat, WHITE ) == false ) ;
-
-      // Test adding a cat with a duplicate license
-      assert( addCat( "Oscar II", UNKNOWN_GENDER, SHORTHAIR,  false, 1.1, RED, BLUE, 101 ) == BAD_CAT ) ;
-      assert( updateLicense( testCat, 101 ) == false ) ;
-#endif
-
-    printAllCats() ;
-
-    size_t kali = findCatByName( "Kali" ) ;
-    assert( kali != BAD_CAT );
-    assert( updateCatName( kali, "Chili" ) == false ) ; // duplicate cat name should fail
-    assert( printCat( kali )) ;
-    assert( updateCatName( kali, "Capulet" ) == true ) ;
-    assert( updateCatWeight( kali, 9.9 ) == true ) ;
-    assert( fixCat( kali ) == true ) ;
-    assert( updateCatCollar1( kali, WHITE ) == true ) ;
-    assert( updateCatCollar2( kali, PINK ) == true ) ;
-    assert( updateLicense( kali, 201 ) == true ) ;
-
-    assert( printCat( kali )) ;
+    addCat( new Cat( "Loki", MALE, PERSIAN, 1.0 )) ;
+    addCat( new Cat( "Milo", MALE, MANX , 1.1 )) ;
+    addCat( new Cat( "Bella", FEMALE, MAINE_COON, 1.2 )) ;
+    addCat( new Cat( "Kali", FEMALE, SHORTHAIR, 1.3 )) ;
+    addCat( new Cat( "Trin", FEMALE, MANX, 1.4 )) ;
+    addCat( new Cat( "Chili", MALE, SHORTHAIR, 1.5 )) ;
 
     printAllCats() ;
 
     deleteAllCats() ;
-    printAllCats() ;
 
-    printf( "Done with %s\n", PROGRAM_TITLE ) ;
+    //printAllCats() ;
+
+    cout << "Done with Animal Farm 1 "  ;
 
     return( EXIT_SUCCESS ) ;
 }

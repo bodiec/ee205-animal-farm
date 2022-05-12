@@ -22,6 +22,25 @@
 
 using namespace std;
 
+////create Cat node with default vaules
+Cat::Cat() {
+    zeroOutMember();
+}
+
+//// Entering data into cat
+Cat::Cat(const char *newName, const Gender newGender, const Breed newBreed, const Weight newWeight) {
+    setName( newName );
+    setGender( newGender );
+    setBreed( newBreed );
+    setWeight(newWeight);
+    ////check if valid
+    assert(validate());
+}
+
+Cat::~Cat(){
+    zeroOutMember();
+}
+
 /// Format a line for printing the members of a class
 #define FORMAT_LINE( className, member ) cout << setw(8) << (className) << setw(20) << (member) << setw(52)
 /// returns true if everything worked correctly. false if something goes
@@ -163,18 +182,3 @@ void Cat::zeroOutMember(){
     next = nullptr;
 }
 
-////create Cat node with default vaules
-Cat::Cat() {
-    zeroOutMember();
-}
-
-
-//// Entering data into cat
-Cat::Cat(const char *newName, const Gender newGender, const Breed newBreed, const Weight newWeight) {
-    setName( newName );
-    setGender( newGender );
-    setBreed( newBreed );
-    setWeight(newWeight);
-    ////check if valid
-    assert(validate());
-    }

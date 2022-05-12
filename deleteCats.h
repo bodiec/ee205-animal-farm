@@ -10,4 +10,13 @@
 /// @author Bodie Collins <Bodie@hawaii.edu>
 /// @date 10_May_2022
 ///////////////////////////////////////////////////////////////////////////////
+#pragma once
+
+#include "linkedList.h"
+
+///Deletes all cats in database
+extern bool deleteAllCats();
+
+///deletes a single cat from the database
+extern bool deleteCat(Cat* deleteThisCat);
 

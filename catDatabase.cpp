@@ -58,6 +58,7 @@ bool isCatInDatabase(const Cat* aCat){
 extern bool validateDatabase(){
     ///varible for number of good cats
     int goodCats = 0;
+    cout<<"number if cats is ="<< numberOfCats <<endl;
 
     /// cylces through linked list
     for(Cat* iCat = catDatabaseHeadPointer; iCat != nullptr; iCat = iCat->next){
@@ -69,8 +70,10 @@ extern bool validateDatabase(){
         Cat* foundCat = findCatByName( iCat->getName() );
         if(foundCat != iCat){
             cout << PROGRAM_NAME": Found a duplicate name[" << iCat->getName() <<"]"<< endl;
+            return false;
             }
         ///passes validation so increment how many good cats
+        cout<<"number if goodcats is ="<< goodCats <<endl;
         goodCats++;
         }
 

@@ -13,11 +13,7 @@
 
 #pragma once
 ///program titles and name
-#define PROGRAM_TITLE "Animal Farm 2"
 #define PROGRAM_NAME  "animalfarm2"
-
-///max # of cats in database
-#define MAX_CATS (1024)
 
 ////New class Weight = float
 typedef float Weight;
