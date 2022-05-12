@@ -8,16 +8,17 @@
 /// Holds linklist stuff
 ///
 /// @author Bodie Collins <bodie@hawaii.edu>
-/// @date   07_Apr_2022
+/// @date   10_May_2022
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "linkedList.h"
 #include "reportCats.h"
 
 #include <cstring>
-#include<cassert>
+#include <cassert>
 #include <iostream>
 #include <iomanip>
+#include <stdexcept>
 
 using namespace std;
 
@@ -25,6 +26,7 @@ using namespace std;
 #define FORMAT_LINE( className, member ) cout << setw(8) << (className) << setw(20) << (member) << setw(52)
 /// returns true if everything worked correctly. false if something goes
 /// wrong
+////
 bool Cat::print() const noexcept {
     assert( validate() ) ;
     cout << setw(80) << setfill( '=' ) << "" << endl ;
@@ -39,7 +41,7 @@ bool Cat::print() const noexcept {
     return true ;
 }
 
-////Validations
+////Validations//////////////////////////////////////////////////////////////////
 bool Cat::validateName(const char *newName) {
     ////check to make sure names not null
     if(newName == nullptr){
@@ -96,11 +98,56 @@ bool Cat::validate() const noexcept {
     ////if passes all validation return true
     return true;
 }
-////Getters
+////Getters//////////////////////////////
 
-////Setters
+const char *Cat::getName() const noexcept {
+    return name;
+    }
 
+Gender Cat::getGender() const noexcept {
+    return gender;
+    }
+Breed Cat::getBreed() const noexcept {
+    return breed;
+    }
+Weight Cat::getWeight() const noexcept {
+    return weight;
+    }
+    bool Cat::isFixed() const noexcept {
+    return isCatFixed;
+    }
+////Setters/////////////////////////////
+void Cat::setName(const char *newName) {
+    validateName(newName);
+    memset(name,0,MAX_CAT_NAME);
+    strcpy(name, newName);
+    }
+
+void Cat::setWeight(Weight newWeight){
+    validateWeight(newWeight);
+    Cat::weight = newWeight;
+    }
+
+void Cat::setBreed(Breed newBreed){
+    if (breed != UNKNOWN_BREED){
+        throw logic_error(PROGRAM_NAME": Breed has already been set, cannot be changed");
+        }
+    validateBreed(newBreed);
+    Cat::breed = newBreed;
+    }
+
+void Cat::setGender(Gender newGender) {
+    if (gender != UNKNOWN_GENDER){
+        throw logic_error(PROGRAM_NAME": Gender has already been set, cannot be changed");
+        }
+    validateGender(newGender);
+    Cat::gender = newGender;
+    }
+void Cat::fixCat() noexcept {
+    Cat::isCatFixed = true;
+    }
 ////Zeroing out cat node
+
 void Cat::zeroOutMember(){
     ////zero out name
     memset(name, 0 ,MAX_CAT_NAME);
@@ -120,3 +167,14 @@ void Cat::zeroOutMember(){
 Cat::Cat() {
     zeroOutMember();
 }
+
+
+//// Entering data into cat
+Cat::Cat(const char *newName, const Gender newGender, const Breed newBreed, const Weight newWeight) {
+    setName( newName );
+    setGender( newGender );
+    setBreed( newBreed );
+    setWeight(newWeight);
+    ////check if valid
+    assert(validate());
+    }

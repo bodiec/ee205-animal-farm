@@ -8,12 +8,11 @@
 /// Configuration header file for the linkedList.cpp
 ///
 /// @author Bodie Collins <bodie@hawaii.edu>
-/// @date   07_Apr_2022
+/// @date   10_May_2022
 ///////////////////////////////////////////////////////////////////////////////
 #pragma once
 #include "config.h"
 #define MAX_CAT_NAME (50)
-#define UNKNOWN_WEIGHT (-1)
 
 class Cat {
     ////member variables
@@ -34,7 +33,7 @@ class Cat {
         Cat();
 
         ////Creates a cat with all the necessary fields
-        Cat( const char *newName, const Gender newGender, const Breed newBreed, const Weight weight);
+        Cat( const char *newName, const Gender newGender, const Breed newBreed, const Weight newWeight);
 
         ////Zero out all member data
         virtual ~Cat();

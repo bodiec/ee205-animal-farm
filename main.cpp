@@ -1,5 +1,5 @@
 ///         University of Hawaii, College of Engineering
-/// @brief  Lab 08d - Animal Farm 1 - EE 205 - Spr 2022
+/// @brief  Lab 08d - Animal Farm 2 - EE 205 - Spr 2022
 ///
 /// @file main.cpp
 /// @version 1.0
@@ -14,7 +14,7 @@
 ///    $ make clean && clear && make       && make test
 ///
 /// @author Bodie Collins <bodie@hawaii.edu>s
-/// @date   19_Feb_2022
+/// @date   10_May_2022
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
